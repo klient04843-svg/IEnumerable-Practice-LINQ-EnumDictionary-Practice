@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 
 namespace Practice
 {
-    abstract class EnumDictionary<TEnum, TValue> : IEnumerable
+    abstract class EnumDictionary<TEnum, TValue> : IEnumerable<T>
         where TEnum : struct, Enum
     {
         private Dictionary<TEnum, TValue> _data;
 
         public TValue Get(TEnum key) => _data[key];
 
-        public IEnumerator GetEnumerator()
-            => _data.GetEnumerator();
+        public IEnumerator<TValue> GetEnumerator()
+            => _data.Values.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => GetEnumerator();
 
         protected EnumDictionary(Func<TValue> factory)
         {
