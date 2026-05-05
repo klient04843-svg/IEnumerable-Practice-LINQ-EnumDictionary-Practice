@@ -11,7 +11,7 @@ namespace Practice
 
             foreach (var item in collection)
             {
-                item.ToString();
+                item.Change(item.Value));
             }
         }
     }
